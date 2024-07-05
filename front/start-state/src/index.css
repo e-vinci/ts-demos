@@ -1,0 +1,11 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-image: url(./assets/images/pizza.jpg);
+  background-size: cover;
+}

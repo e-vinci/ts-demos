@@ -1,0 +1,26 @@
+footer {
+  text-align: center;
+}
+
+footer img {
+  height: 50px;
+}
+
+
+footer {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: var(--secondary-main);
+  color: var(--primary-secondary-text);
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+footer.secondary {
+  background-color: var(--primary-main);
+  color: var(--primary-contrastText);
+}

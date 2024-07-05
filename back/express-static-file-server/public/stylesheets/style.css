@@ -1,0 +1,39 @@
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+html {    
+    background-image : url(../img/pizza.jpg);
+    background-size : cover;
+}
+
+body { 
+    /*to easily deal with sticky footer*/
+    display: flex;
+    flex-direction: column;
+}
+
+
+header{
+    text-align: center;
+}
+
+main{
+    text-align: center;
+     /*to easily deal with sticky footer:
+     grow the main to fill the space*/
+    flex: 1 0 auto;
+}
+
+footer{
+    text-align: center;    
+}
+
+footer img {
+    height: 50px;
+}
+
+footer h1{
+    color: white;
+}

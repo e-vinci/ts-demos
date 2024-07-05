@@ -1,0 +1,4 @@
+div#root {
+  width: 100%;
+  display: inline-block; /* avoid margins to collapse to avoid vertical scrollbar */
+}

@@ -1,0 +1,30 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-image: url(./assets/images/pizza.jpg);
+  background-size: cover;
+}
+
+div#root {
+  height: 100%;
+  display: inline-block; /* avoid margins to collapse to avoid vertical scrollbar */
+  width: 100%;
+}
+
+:root {
+  --primary-main: #f0483b;
+  --primary-light: #ff7961;
+  --primary-dark: #ba000d;
+  --primary-contrast-text: #ffffff;
+
+  --secondary-main: #3bf048;
+  --secondary-light: #76ff6b;
+  --secondary-dark: #009b00;
+  --secondary-contrast-text: #000000;
+}
+

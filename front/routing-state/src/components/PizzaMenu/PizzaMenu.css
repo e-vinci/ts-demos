@@ -1,0 +1,45 @@
+.pizza-menu {
+  width: 70%;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+.pizza-menu table {
+  width: 100%;
+}
+
+.pizza-menu h2 {
+  text-align: center;
+  color: var(--secondary-contrast-text);
+  background-color: var(--secondary-main);
+  padding: 8px;
+  margin-bottom: 2rem;
+}
+
+.pizza-menu th, .pizza-menu td {
+  border: 1px solid var(--primary-dark);
+  padding: 8px;
+  text-align: left;
+}
+
+.pizza-menu th {
+  background-color: var(--primary-main);
+  color: var(--primary-contrast-text);
+}
+
+.pizza-menu tr:nth-child(even) {
+  background-color: var(--primary-light);
+}
+
+.pizza-menu tr:hover {
+  background-color: var(--primary-dark);
+  color: var(--primary-contrast-text);
+}
+
+.pizza-menu tbody tr:nth-child(odd) {
+  background-color: var(--secondary-light);
+}
+
+.pizza-menu tbody tr:nth-child(even) {
+  background-color: var(--secondary-main);
+}

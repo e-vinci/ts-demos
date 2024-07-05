@@ -1,0 +1,31 @@
+{
+  "name": "cookies",
+  "version": "0.0.0",
+  "author": "e-Baron",
+  "private": true,
+  "scripts": {
+    "tsc": "tsc",
+    "debug": "npm run dev",
+    "dev": "ts-node-dev bin/www",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/bin/www"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-session": "^2.1.0",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/cookie-session": "^2.0.49",
+    "@types/debug": "^4.1.12",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@typescript-eslint/eslint-plugin": "^7.13.0",
+    "@typescript-eslint/parser": "^7.13.0",
+    "eslint": "^8.56.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "5.4.4"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "express-static-file-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "e-baron",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

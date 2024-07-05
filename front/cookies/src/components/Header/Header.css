@@ -1,0 +1,17 @@
+header {
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: var(--primary-main);
+  color: var(--primary-contrast-text);
+  text-align: center;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+header.secondary {
+  background-color: var(--secondary-main);
+  color: var(--secondary-contrastText);
+}

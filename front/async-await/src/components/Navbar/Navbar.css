@@ -1,0 +1,26 @@
+nav {
+  background-color: var(--primary-main);
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+nav button {
+  background-color: var(--secondary-main);
+  color: var(--secondary-contrast-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-right: 1rem  ;
+}
+
+nav button:hover {
+  background-color: var(--secondary-light);
+}
+
+nav button:active {
+  background-color: var(--secondary-dark);
+  color: var(--primary-contrast-text);
+}
