@@ -1,7 +1,6 @@
 import { Router } from "express";
 
 import { NewPizza, PizzaToUpdate } from "../types";
-import { isString } from "../utils/type-guards";
 import {
   createPizza,
   deletePizza,
@@ -23,7 +22,9 @@ router.get("/error", (_req, _res, _next) => {
    GET /pizzas?order=-title : descending order by title
 */
 router.get("/", (req, res) => {
-  if (req.query.order && !isString(req.query.order)) return res.sendStatus(400);
+  if (req.query.order && typeof req.query.order !== "string") {
+    return res.sendStatus(400);
+  }
 
   const pizzas = readAllPizzas(req.query.order);
   return res.json(pizzas);
@@ -39,18 +40,21 @@ router.get("/:id", (req, res) => {
 
 // Create a pizza to be added to the menu.
 router.post("/", authorize, isAdmin, (req, res) => {
-  const { title, content } = req.body as NewPizza;
-
+  const body: unknown = req.body;
   if (
-    !title ||
-    !content ||
-    !isString(title) ||
-    !isString(content) ||
-    !title.trim() ||
-    !content.trim()
+    !body ||
+    typeof body !== "object" ||
+    !("title" in body) ||
+    !("content" in body) ||
+    typeof body.title !== "string" ||
+    typeof body.content !== "string" ||
+    !body.title.trim() ||
+    !body.content.trim()
   ) {
     return res.sendStatus(400);
   }
+
+  const { title, content } = body as NewPizza;
 
   const addedPizza = createPizza({ title, content });
 
@@ -68,16 +72,19 @@ router.delete("/:id", authorize, isAdmin, (req, res) => {
 
 // Update a pizza based on its id and new values for its parameters
 router.patch("/:id", authorize, isAdmin, (req, res) => {
-  const pizzaToUpdate = req.body as PizzaToUpdate;
-  const { title, content } = pizzaToUpdate;
-
+  const body: unknown = req.body;
   if (
-    (!title && !content) ||
-    (title !== undefined && (!isString(title) || !title.trim())) ||
-    (content !== undefined && (!isString(content) || !content.trim()))
+    !body ||
+    typeof body !== "object" ||
+    ("title" in body &&
+      (typeof body.title !== "string" || !body.title.trim())) ||
+    ("content" in body &&
+      (typeof body.content !== "string" || !body.content.trim()))
   ) {
     return res.sendStatus(400);
   }
+
+  const pizzaToUpdate: PizzaToUpdate = body;
 
   const id = Number(req.params.id);
   const updatedPizza = updatePizza(id, pizzaToUpdate);

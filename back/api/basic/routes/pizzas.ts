@@ -3,7 +3,6 @@ import { Router } from "express";
 import path from "node:path";
 import { NewPizza, Pizza, PizzaToUpdate } from "../types";
 import { serialize, parse } from "../utils/json";
-import { isString } from "../utils/type-guards";
 
 const router = Router();
 
@@ -47,11 +46,14 @@ router.get("/error", (_req, _res, _next) => {
    GET /pizzas?order=-title : descending order by title
 */
 router.get("/", (req, res) => {
-  if (req.query.order && !isString(req.query.order)) return res.sendStatus(400);
+  if (req.query.order && typeof req.query.order !== "string") {
+    return res.sendStatus(400);
+  }
 
-  const orderByTitle = req.query.order?.includes("title")
-    ? req.query.order
-    : undefined;
+  const orderByTitle =
+    typeof req.query.order === "string" && req.query.order.includes("title")
+      ? req.query.order
+      : undefined;
   let orderedMenu: Pizza[] = [];
   const pizzas = parse(jsonDbPath, defaultPizzas);
   if (orderByTitle)
@@ -77,18 +79,21 @@ router.get("/:id", (req, res) => {
 
 // Create a pizza to be added to the menu.
 router.post("/", (req, res) => {
-  const { title, content } = req.body as NewPizza;
-
+  const body: unknown = req.body;
   if (
-    !title ||
-    !content ||
-    !isString(title) ||
-    !isString(content) ||
-    !title.trim() ||
-    !content.trim()
+    !body ||
+    typeof body !== "object" ||
+    !("title" in body) ||
+    !("content" in body) ||
+    typeof body.title !== "string" ||
+    typeof body.content !== "string" ||
+    !body.title.trim() ||
+    !body.content.trim()
   ) {
     return res.sendStatus(400);
   }
+
+  const { title, content } = body as NewPizza;
 
   const pizzas = parse(jsonDbPath, defaultPizzas);
   // Use reduce() to find the highest id in the pizzas array
@@ -128,18 +133,19 @@ router.delete("/:id", (req, res) => {
 
 // Update a pizza based on its id and new values for its parameters
 router.patch("/:id", (req, res) => {
-  const pizzaToUpdate = req.body as PizzaToUpdate;
-  const { title, content } = pizzaToUpdate;
-
+  const body: unknown = req.body;
   if (
-    (!title && !content) ||
-    (title && !isString(title)) ||
-    (content && !isString(content)) ||
-    (title && !title.trim()) ||
-    (content && !content.trim())
+    !body ||
+    typeof body !== "object" ||
+    ("title" in body &&
+      (typeof body.title !== "string" || !body.title.trim())) ||
+    ("content" in body &&
+      (typeof body.content !== "string" || !body.content.trim()))
   ) {
     return res.sendStatus(400);
   }
+
+  const pizzaToUpdate: PizzaToUpdate = body;
 
   const pizzas = parse(jsonDbPath, defaultPizzas);
   const idInRequest = parseInt(req.params.id, 10);

@@ -5,10 +5,21 @@ const router = Router();
 
 /* Register a user */
 router.post("/register", async (req, res) => {
-  const { username, password } = req.body as PotentialUser;
-  if (!username || !password || !username.trim() || !password.trim()) {
+  const body: unknown = req.body;
+  if (
+    !body ||
+    typeof body !== "object" ||
+    !("username" in body) ||
+    !("password" in body) ||
+    typeof body.username !== "string" ||
+    typeof body.password !== "string" ||
+    !body.username.trim() ||
+    !body.password.trim()
+  ) {
     return res.sendStatus(400);
   }
+
+  const { username, password } = body as PotentialUser;
 
   const authenticatedUser = await register(username, password);
 
@@ -21,10 +32,21 @@ router.post("/register", async (req, res) => {
 
 /* Login a user */
 router.post("/login", async (req, res) => {
-  const { username, password } = req.body as PotentialUser;
-  if (!username || !password || !username.trim() || !password.trim()) {
+  const body: unknown = req.body;
+  if (
+    !body ||
+    typeof body !== "object" ||
+    !("username" in body) ||
+    !("password" in body) ||
+    typeof body.username !== "string" ||
+    typeof body.password !== "string" ||
+    !body.username.trim() ||
+    !body.password.trim()
+  ) {
     return res.sendStatus(400);
   }
+
+  const { username, password } = body as PotentialUser;
 
   const authenticatedUser = await login(username, password);
 

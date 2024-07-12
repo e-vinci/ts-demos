@@ -27,24 +27,27 @@ router.get("/:id", (req, res) => {
 });
 
 router.post("/", authorize, isAdmin, (req, res) => {
-  const { title, image, volume, price } = req.body as NewDrink;
-
+  const body: unknown = req.body;
   if (
-    !title ||
-    !image ||
-    !volume ||
-    !price ||
-    typeof title !== "string" ||
-    typeof image !== "string" ||
-    typeof volume !== "number" ||
-    typeof price !== "number" ||
-    !title.trim() ||
-    !image.trim() ||
-    volume <= 0 ||
-    price <= 0
+    !body ||
+    typeof body !== "object" ||
+    !("title" in body) ||
+    !("image" in body) ||
+    !("volume" in body) ||
+    !("price" in body) ||
+    typeof body.title !== "string" ||
+    typeof body.image !== "string" ||
+    typeof body.volume !== "number" ||
+    typeof body.price !== "number" ||
+    !body.title.trim() ||
+    !body.image.trim() ||
+    body.volume <= 0 ||
+    body.price <= 0
   ) {
     return res.sendStatus(400);
   }
+
+  const { title, image, volume, price } = body as NewDrink;
 
   const newDrink = createOneDrink({ title, image, volume, price });
   return res.json(newDrink);
@@ -62,16 +65,23 @@ router.delete("/:id", authorize, isAdmin, (req, res) => {
 router.patch("/:id", authorize, isAdmin, (req, res) => {
   const id = Number(req.params.id);
 
-  const { title, image, volume, price } = req.body as Partial<NewDrink>;
+  const body: unknown = req.body;
 
   if (
-    (title !== undefined && (typeof title !== "string" || !title.trim())) ||
-    (image !== undefined && (typeof image !== "string" || !image.trim())) ||
-    (volume !== undefined && (typeof volume !== "number" || volume <= 0)) ||
-    (price !== undefined && (typeof price !== "number" || price <= 0))
+    !body ||
+    typeof body !== "object" ||
+    ("title" in body &&
+      (typeof body.title !== "string" || !body.title.trim())) ||
+    ("image" in body &&
+      (typeof body.image !== "string" || !body.image.trim())) ||
+    ("volume" in body &&
+      (typeof body.volume !== "number" || body.volume <= 0)) ||
+    ("price" in body && (typeof body.price !== "number" || body.price <= 0))
   ) {
     return res.sendStatus(400);
   }
+
+  const { title, image, volume, price }: Partial<NewDrink> = body;
 
   const updatedDrink = updateOneDrink(id, { title, image, volume, price });
 

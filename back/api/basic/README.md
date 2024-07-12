@@ -4,9 +4,9 @@
 ### Installation
 - Si vous ne l'avez pas fait, vous pouvez cloner le repo associé au boilerplate pour initier votre application : `git clone https://github.com/e-vinci/basic-ts-api-boilerplate.git` ou `git clone https://github.com/e-vinci/basic-ts-api-boilerplate.git nom-de-votre-projet` pour créer votre projet nommé `nom-de-votre-projet`.
 - **package.json** est le fichier de configuration de votre projet. Veuillez le mettre à jour afin de :
-  - donnnez un nom à votre projet & une description ;
+  - donnez un nom à votre projet & une description ;
   - vous identifier comme auteur.
-- ⚡ Si vous avez cloné votre projet au sein d'un repo existant, Git ne trackera pas ce nouveau projet ; en effet, Git ne tracque pas des projets Git dans des projets Git.
+- ⚡ Si vous avez cloné votre projet au sein d'un repo existant, Git ne traquera pas ce nouveau projet ; en effet, Git ne traque pas des projets Git dans des projets Git.
   Pour vous assurer que Git traque votre nouveau projet imbriqué dans un repo, vous devez effacer le répertoire **.git** se trouvant dans votre nouveau projet. N'hésitez pas aussi à effacer **.gitignore** se trouvant dans votre nouveau projet.
 - Par contre, si vous souhaitez créer un nouveau repo à l'aide de votre boilerplate,
   vous pouvez utiliser le **.gitignore** existant. Vous pouvez aussi éventuellement utiliser le
