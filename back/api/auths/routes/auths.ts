@@ -1,3 +1,10 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* 
+In Express V4, asynchronous functions are not fully supported in TypeScript 
+(only void return type for RequestHandler is allowed). 
+In Express V5, this issue has been addressed, but V5 is still in beta. 
+Consequently, the ESLint rule "no-misused-promises" is disabled. */
+
 import { Router } from "express";
 import { PotentialUser } from "../types";
 import { login, register } from "../services/users";
