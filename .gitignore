@@ -1,0 +1,8 @@
+# ignore MacOS specific files
+.DS_Store
+# ignore Windows specific files
+Thumbs.db
+# ignore Linux specific files
+lost+found/
+# ignore dependencies
+node_modules
