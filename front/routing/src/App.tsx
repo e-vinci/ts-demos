@@ -71,5 +71,12 @@ const App = () => (
   </div>
 );
 
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  phone: string;
+}
+
 export default App;
 export { HomePage, AboutPage, ContactPage, UserPage };
