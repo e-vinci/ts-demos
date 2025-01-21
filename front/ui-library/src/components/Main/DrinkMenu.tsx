@@ -4,7 +4,7 @@ import {
   CardMedia,
   CardContent,
   Typography,
-  Grid,
+  Grid2,
   useTheme,
 } from "@mui/material";
 import { Drink } from "../../types";
@@ -14,9 +14,8 @@ interface DrinkMenuProps {
   drinks: Drink[];
 }
 
-const DrinkMenu: React.FC<DrinkMenuProps> = ({ title, drinks }) => {
+const DrinkMenu = ({ title, drinks }: DrinkMenuProps) => {
   const theme = useTheme();
-
   return (
     <Container>
       <Typography
@@ -30,9 +29,9 @@ const DrinkMenu: React.FC<DrinkMenuProps> = ({ title, drinks }) => {
       >
         {title}
       </Typography>
-      <Grid container spacing={3}>
+      <Grid2 container spacing={3}>
         {drinks.map((drink, index) => (
-          <Grid item xs={12} sm={6} key={index}>
+          <Grid2 size={{ xs: 12, sm: 6 }} key={index}>
             <Card>
               <CardMedia
                 component="img"
@@ -52,9 +51,9 @@ const DrinkMenu: React.FC<DrinkMenuProps> = ({ title, drinks }) => {
                 </Typography>
               </CardContent>
             </Card>
-          </Grid>
+          </Grid2>
         ))}
-      </Grid>
+      </Grid2>
     </Container>
   );
 };
